@@ -15,4 +15,13 @@ export class ItemsComponent implements OnInit {
   ngOnInit(): void {
     this.items = this.itemService.getItems()
   }
+
+  itemLoading($event: any) {
+    console.log("itemLoading")
+  }
+
+
+  itemTap($event: any) {
+    console.log("itemTap")
+  }
 }

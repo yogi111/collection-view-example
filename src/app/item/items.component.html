@@ -1,11 +1,23 @@
-<ActionBar title="My App"> </ActionBar>
-
+<ActionBar title="My App"></ActionBar>
 <GridLayout>
-  <ListView [items]="items">
-    <ng-template let-item="item">
-      <StackLayout [nsRouterLink]="['/item', item.id]">
-        <Label [text]="item.name"></Label>
-      </StackLayout>
-    </ng-template>
-  </ListView>
+    <GestureRootView>
+        <CollectionView backgroundColor="white" [items]="items" colWidth="100%" rowHeight="40"
+                        (itemLoading)="itemLoading($event)" (itemTap)="itemTap($event)">
+            <ng-template let-item="item" let-index="index">
+                <SwipeMenu>
+                    <StackLayout mainContent [nsRouterLink]="['/item', item.id]">
+                        <Label [text]="item.name"></Label>
+                    </StackLayout>
+                    <StackLayout leftSwipeMenu Style="{backgroundColor: 'green'}">
+                        <Label text="complete"></Label>
+                    </StackLayout>
+                    <StackLayout rightSwipeMenu Style="{backgroundColor: 'red'}">
+                        <Label text="reject"></Label>
+                    </StackLayout>
+                </SwipeMenu>
+            </ng-template>
+        </CollectionView>
+    </GestureRootView>
 </GridLayout>
+
+
